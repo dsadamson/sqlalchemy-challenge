@@ -16,28 +16,28 @@ the database and finds the classes featured in the data, then saves references t
 weather measurements and data about the weather stations, sorted by certain positions they hold in the data (e.g., where and when the measurements were taken).
 An example is featured below:
 
-Base = automap_base()
-Base.prepare(engine, reflect=True)
+    Base = automap_base()
+    Base.prepare(engine, reflect=True)
 
 #View all of the classes that automap found
 
-for cls in Base.classes:
+    for cls in Base.classes:
 
-    print(cls.__table__.name)
+        print(cls.__table__.name)
 
 #Save references to each table
 
-Measurement = Base.classes.measurement
+    Measurement = Base.classes.measurement
 
-Station = Base.classes.station
+    Station = Base.classes.station
 
 #Perform a query to retrieve the data and precipitation scores
 
-query1 = session.query(Measurement.date, Measurement.prcp).\
+    query1 = session.query(Measurement.date, Measurement.prcp).\
 
-    filter(Measurement.date >= one_year_date).\
+        filter(Measurement.date >= one_year_date).\
     
-    order_by(Measurement.date).all()
+        order_by(Measurement.date).all()
     
 This code uses the classes to locate weather measurements from their class, then filter and order them, according to a date connected in the same class.
 
